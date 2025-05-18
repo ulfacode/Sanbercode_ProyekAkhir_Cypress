@@ -1,40 +1,51 @@
 class LoginPage {
     visit(){
-        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+        cy.visit('/auth/login');
     };
 
-    getUsernameField(){
-        return cy.get('input[name="username"]');
+    inputUsername(username){
+        cy.get('input[name="username"]').clear().type(username);
     };
 
-    getPasswordField(){
-        return cy.get('input[name="password"]');
+    inputPassword(password){
+        cy.get('input[name="password"]').clear().type(password);
     };
 
-    getLoginButton(){
-        return cy.get('button[type="submit"]');
+    LoginButton(){
+        cy.get('button[type="submit"]').click();
     };  
-    getErrorMessage_1(){
-        return cy.get(':nth-child(2) > .oxd-input-group > .oxd-text');
+    verifyUsernameRequiredError(){
+        cy.get(':nth-child(2) > .oxd-input-group > .oxd-text').should('contain', 'Required');;
     };
 
-    getErrorMessage_2(){
-        return cy.get(':nth-child(3) > .oxd-input-group > .oxd-text');
+    verifyPasswordRequiredError(){
+        cy.get(':nth-child(3) > .oxd-input-group > .oxd-text').should('contain', 'Required');;
     };
 
-    getErrorMessage_3(){
-        return cy.get('.oxd-alert-content > .oxd-text');
+    verifyInvalidLogin(){
+        cy.get('.oxd-alert-content > .oxd-text').should('contain', 'Invalid credentials');
     };
 
-    getLoginPageTitle(){
-        return cy.get('h5[class="oxd-text oxd-text--h5 orangehrm-login-title"]');
+    verifyLoginPageTitle(){
+        cy.get('h5[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('contain', 'Login');
+    };
+    
+    verifyFieldUsername(){
+        cy.get('input[name="username"]').should('be.visible');
     };
 
-    login(username, password){
-        this.getUsernameField().type(username);
-        this.getPasswordField().type(password);
-        this.getLoginButton().click();
+    verifyFieldPassword(){
+        cy.get('input[name="password"]').should('be.visible');
+    };
+
+    verifyButtonLogin(){
+        cy.get('button[type="submit"]').should('be.visible');
+    }   
+
+    verifyLoginSuccess(){
+        cy.url().should('include', '/dashboard');
     }
+   
 
 };
 
