@@ -20,9 +20,12 @@ describe('Reset Password Page Tests', () => {
         ResetPassPage.verifyUsernameRequiredError();
     });
 
-    it('Reset password dengan username yang valid', () => {
+    it.only('Reset password dengan username yang valid', () => {
         ResetPassPage.inputUsername(LoginData.validUsername);
+        cy.intercept('GET', 'https://opensource-demo.orangehrmlive.com/web/index.php/core/i18n/messages').as('resetPassword');
         ResetPassPage.resetButton();
+        // Verifikasi bahwa permintaan ke endpoint reset password berhasil
+        cy.wait('@resetPassword');
         ResetPassPage.verifyResetPasswordSuccess();
     });
 
