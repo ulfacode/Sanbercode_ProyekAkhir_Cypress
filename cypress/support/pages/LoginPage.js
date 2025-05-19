@@ -35,7 +35,7 @@ class LoginPage {
         this.getPasswordInput().clear().type(password);
     };
 
-    LoginButton(){
+    clickLoginButton(){
         this.getLoginButton().click();
     };  
     verifyUsernameRequiredError(){
