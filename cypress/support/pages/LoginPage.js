@@ -3,16 +3,40 @@ class LoginPage {
         cy.visit('/auth/login');
     };
 
+    getUsernameInput(){
+        return cy.get('input[name="username"]');
+    };
+    
+    getPasswordInput(){
+        return cy.get('input[name="password"]');
+    };
+
+    getLoginButton(){
+        return cy.get('button[type="submit"]');
+    }
+
+    verifyFieldUsername(){
+        this.getUsernameInput().should('be.visible');
+    };
+
+    verifyFieldPassword(){
+        this.getPasswordInput().should('be.visible');
+    };
+
+    verifyButtonLogin(){
+        this.getLoginButton().should('be.visible');
+    }   
+
     inputUsername(username){
-        cy.get('input[name="username"]').clear().type(username);
+        this.getUsernameInput().clear().type(username);
     };
 
     inputPassword(password){
-        cy.get('input[name="password"]').clear().type(password);
+        this.getPasswordInput().clear().type(password);
     };
 
     LoginButton(){
-        cy.get('button[type="submit"]').click();
+        this.getLoginButton().click();
     };  
     verifyUsernameRequiredError(){
         cy.get(':nth-child(2) > .oxd-input-group > .oxd-text').should('contain', 'Required');;
@@ -30,22 +54,10 @@ class LoginPage {
         cy.get('h5[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('contain', 'Login');
     };
     
-    verifyFieldUsername(){
-        cy.get('input[name="username"]').should('be.visible');
-    };
-
-    verifyFieldPassword(){
-        cy.get('input[name="password"]').should('be.visible');
-    };
-
-    verifyButtonLogin(){
-        cy.get('button[type="submit"]').should('be.visible');
-    }   
 
     verifyLoginSuccess(){
         cy.url().should('include', '/dashboard');
     }
-   
 
 };
 
