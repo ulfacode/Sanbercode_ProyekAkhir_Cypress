@@ -16,7 +16,7 @@ describe('Login Page Tests', () => {
     LoginPage.verifyButtonLogin();
   });
 
-  it.only('Login dengan username & password yang valid', () => {
+  it('Login dengan username & password yang valid', () => {
     
     LoginPage.inputUsername(LoginData.validUsername);
     LoginPage.inputPassword(LoginData.validPassword);
