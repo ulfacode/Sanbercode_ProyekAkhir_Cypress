@@ -3,24 +3,36 @@ class ResetPassPage{
         cy.visit('/auth/requestPasswordResetCode')
     }
 
+    getCancelButton(){
+        return cy.get('.oxd-button--ghost');
+    }
+
+    getResetButton(){
+        return cy.get('.oxd-button--secondary');
+    }
+
+    getUsernameField(){ 
+        return cy.get('.oxd-input');
+    }
+
     verifyResetPassPageTitle(){
         cy.get('.oxd-text--h6').should('contain', 'Reset Password');
     }
 
     verifyFieldUsername(){
-        cy.get('.oxd-input').should('be.visible');
+        this.getUsernameField().should('be.visible');
     }
 
     verifyButtonCancel(){
-        cy.get('.oxd-button--ghost').should('be.visible');
+        this.getCancelButton().should('be.visible');
     }
 
     verifyButtonReset(){
-        cy.get('.oxd-button--secondary').should('be.visible');
+        this.getResetButton().should('be.visible');
     }
 
     inputUsername(username){
-        cy.get('.oxd-input').clear().type(username);
+        this.getUsernameField().clear().type(username);
     }
 
     verifyUsernameRequiredError(){
@@ -28,11 +40,11 @@ class ResetPassPage{
     }
 
     resetButton(){
-        cy.get('.oxd-button--secondary').click();
+        this.getResetButton().click();
     }
 
     cancelButton(){
-        cy.get('.oxd-button--ghost').click();
+        this.getCancelButton().click();
     }
 
     verifyResetPasswordSuccess(){
