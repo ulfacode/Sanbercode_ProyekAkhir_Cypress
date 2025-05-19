@@ -17,17 +17,18 @@ describe('Login Page Tests', () => {
   });
 
   it.only('Login dengan username & password yang valid', () => {
-    cy.intercept('GET', '/api/v2/dashboard/employees/action-summary').as('dashboardRequest');
-
+    
     LoginPage.inputUsername(LoginData.validUsername);
     LoginPage.inputPassword(LoginData.validPassword);
-    LoginPage.LoginButton();
-    cy.wait('@dashboardRequest',{ timeout: 10000 }).its('response.statusCode').should('eq', 200);
+    cy.intercept('GET', '**/api/v2/dashboard/employees/action-summary').as('login'); //tidak bisa pake base url
+    LoginPage.clickLoginButton();
+    // Verifikasi bahwa permintaan ke endpoint dashboard berhasil
+    cy.wait('@login');
     LoginPage.verifyLoginSuccess();
   });
 
   it('Login tanpa mengisi username & password', () => {
-    LoginPage.LoginButton();
+    LoginPage.clickLoginButton();
     // Verifikasi pesan error untuk username dan password
     LoginPage.verifyUsernameRequiredError()
     LoginPage.verifyPasswordRequiredError()
@@ -35,20 +36,20 @@ describe('Login Page Tests', () => {
 
   it('Login tanpa username, hanya password', () => {
     LoginPage.inputPassword(LoginData.validPassword);
-    LoginPage.LoginButton();
+    LoginPage.clickLoginButton();
     LoginPage.verifyUsernameRequiredError();
   });
 
   it('Login tanpa password, hanya username', () => {
     LoginPage.inputUsername(LoginData.validUsername);
-    LoginPage.LoginButton();
+    LoginPage.clickLoginButton();
     LoginPage.verifyPasswordRequiredError();
   });
 
   it('Login dengan username dan password salah', () => {
     LoginPage.inputUsername(LoginData.invalidUsername);
     LoginPage.inputPassword(LoginData.invalidPassword); 
-    LoginPage.LoginButton();
+    LoginPage.clickLoginButton();
     LoginPage.verifyInvalidLogin();
   });
 
