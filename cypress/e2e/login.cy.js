@@ -17,12 +17,12 @@ describe('Login Page Tests', () => {
   });
 
   it.only('Login dengan username & password yang valid', () => {
-    cy.intercept('GET', '/api/v2/dashboard/employees/action-summary').as('loginRequest');
+    cy.intercept('GET', '/api/v2/dashboard/employees/action-summary').as('dashboardRequest');
 
     LoginPage.inputUsername(LoginData.validUsername);
     LoginPage.inputPassword(LoginData.validPassword);
     LoginPage.LoginButton();
-    cy.wait('@loginRequest').its('response.statusCode').should('eq', 200);
+    cy.wait('@dashboardRequest',{ timeout: 10000 }).its('response.statusCode').should('eq', 200);
     LoginPage.verifyLoginSuccess();
   });
 
