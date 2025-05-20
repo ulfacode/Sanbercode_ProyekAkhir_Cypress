@@ -51,7 +51,7 @@ class LoginPage {
     };
 
     verifyLoginPageTitle(){
-        cy.get('h5[class="oxd-text oxd-text--h5 orangehrm-login-title"]').should('contain', 'Login');
+        cy.get('.oxd-text--h5').should('contain', 'Login');
     };
     
 

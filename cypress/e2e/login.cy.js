@@ -46,22 +46,24 @@ describe('Login Page Tests', () => {
     LoginPage.verifyPasswordRequiredError();
   });
 
-  it('Login dengan username dan password salah', () => {
+  it.only('Login dengan username dan password salah', () => {
     LoginPage.inputUsername(LoginData.invalidUsername);
     LoginPage.inputPassword(LoginData.invalidPassword); 
     LoginPage.clickLoginButton();
     LoginPage.verifyInvalidLogin();
   });
 
-  it('Login dengan username benar, password salah', () => {
+  it.only('Login dengan username benar, password salah', () => {
     LoginPage.inputUsername(LoginData.validUsername);
     LoginPage.inputPassword(LoginData.invalidPassword); 
+    LoginPage.clickLoginButton();
     LoginPage.verifyInvalidLogin()
   });
 
-  it('Login dengan password benar, username salah', () => {
+  it.only('Login dengan password benar, username salah', () => {
     LoginPage.inputUsername(LoginData.invalidUsername);
     LoginPage.inputPassword(LoginData.validPassword); 
+    LoginPage.clickLoginButton();
     LoginPage.verifyInvalidLogin();
   });
 })

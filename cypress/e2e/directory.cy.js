@@ -53,7 +53,7 @@ describe('Directory Page Tests', () => {
         DirectoryPage.verifySearchNotFound();
     });
 
-    it.only('Verifikasi Reset button mengosongkan semua field input', () => {
+    it('Verifikasi Reset button mengosongkan semua field input', () => {
         DirectoryPage.inputSearchEmployeeName(DirectoryData.validEmployeeName);
         DirectoryPage.inputJobTitleOpsi(DirectoryData.validJobTitle);
         DirectoryPage.inputLocationOpsi(DirectoryData.validLocation);
