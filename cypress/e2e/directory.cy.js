@@ -28,19 +28,19 @@ describe('Directory Page Tests', () => {
     });
 
     it('Search employee dengan valid name', () => {
-        DirectoryPage.inputSearchEmployeeName(DirectoryData.validEmployeeName);
+        DirectoryPage.inputSearchEmployeeName(DirectoryData.validEmployeeName); //data nya sering berubah-ubah, jadi terkadang gagal
         DirectoryPage.searchButton();
         DirectoryPage.verifySearchEmployeeNameSuccess(DirectoryData.validEmployeeName);
     });
 
     it(' Search job title dengan valid job title', () => {
-        DirectoryPage.inputJobTitleOpsi(DirectoryData.validJobTitle);
+        DirectoryPage.inputJobTitleOpsi(DirectoryData.validJobTitle);//data nya sering berubah-ubah, jadi terkadang gagal
         DirectoryPage.searchButton();
         DirectoryPage.verifySearchJobTitleSuccess(DirectoryData.validJobTitle);
     });
 
     it('Search lokasi dengan valid location', () => {
-        DirectoryPage.inputLocationOpsi(DirectoryData.validLocation);
+        DirectoryPage.inputLocationOpsi(DirectoryData.validLocation);//data nya sering berubah-ubah, jadi terkadang gagal
         DirectoryPage.searchButton();
         DirectoryPage.verifySearchLocationSuccess(DirectoryData.validLocation);
     });

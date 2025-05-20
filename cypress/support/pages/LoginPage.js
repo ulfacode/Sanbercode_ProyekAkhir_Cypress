@@ -39,11 +39,11 @@ class LoginPage {
         this.getLoginButton().click();
     };  
     verifyUsernameRequiredError(){
-        cy.get(':nth-child(2) > .oxd-input-group > .oxd-text').should('contain', 'Required');;
+        cy.get(':nth-child(2) > .oxd-input-group > .oxd-text').should('contain', 'Required');
     };
 
     verifyPasswordRequiredError(){
-        cy.get(':nth-child(3) > .oxd-input-group > .oxd-text').should('contain', 'Required');;
+        cy.get(':nth-child(3) > .oxd-input-group > .oxd-text').should('contain', 'Required');
     };
 
     verifyInvalidLogin(){
