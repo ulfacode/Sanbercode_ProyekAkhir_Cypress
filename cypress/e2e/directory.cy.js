@@ -27,29 +27,39 @@ describe('Directory Page Tests', () => {
         DirectoryPage.verifySearchButton();
     });
 
-    it('Verifikasi search employee', () => {
+    it('Search employee dengan valid name', () => {
         DirectoryPage.inputSearchEmployeeName(DirectoryData.validEmployeeName);
         DirectoryPage.searchButton();
         DirectoryPage.verifySearchEmployeeNameSuccess(DirectoryData.validEmployeeName);
     });
 
-    it('Verifikasi search job title', () => {
+    it(' Search job title dengan valid job title', () => {
         DirectoryPage.inputJobTitleOpsi(DirectoryData.validJobTitle);
         DirectoryPage.searchButton();
-        DirectoryPage.verifySearchJobTitleOpsiSuccess(DirectoryData.validJobTitle);
+        DirectoryPage.verifySearchJobTitleSuccess(DirectoryData.validJobTitle);
     });
 
-    it('Verifikasi search lokasi', () => {
+    it('Search lokasi dengan valid location', () => {
         DirectoryPage.inputLocationOpsi(DirectoryData.validLocation);
         DirectoryPage.searchButton();
-        DirectoryPage.verifySearchLocationOpsiSuccess(DirectoryData.validLocation);
+        DirectoryPage.verifySearchLocationSuccess(DirectoryData.validLocation);
     });
 
-    it.only('verifikasi search tidak ada hasil', () => {
+    it('Search data employee dengan data yang tidak valid', () => {
         DirectoryPage.inputSearchEmployeeName(DirectoryData.validEmployeeName);
         DirectoryPage.inputJobTitleOpsi(DirectoryData.validJobTitle);
         DirectoryPage.inputLocationOpsi(DirectoryData.invalidLocation);
         DirectoryPage.searchButton();
         DirectoryPage.verifySearchNotFound();
     });
+
+    it.only('Verifikasi Reset button mengosongkan semua field input', () => {
+        DirectoryPage.inputSearchEmployeeName(DirectoryData.validEmployeeName);
+        DirectoryPage.inputJobTitleOpsi(DirectoryData.validJobTitle);
+        DirectoryPage.inputLocationOpsi(DirectoryData.validLocation);
+        DirectoryPage.resetButton();
+        DirectoryPage.verifyResetSearchSuccess();
+    });
+
+
 });

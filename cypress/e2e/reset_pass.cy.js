@@ -29,7 +29,7 @@ describe('Reset Password Page Tests', () => {
         ResetPassPage.verifyResetPasswordSuccess();
     });
 
-    it('Verifikasi Button Cancel', () => {
+    it('Pastikan button cancel berfungsi', () => {
         ResetPassPage.cancelButton();
         cy.url().should('include', '/auth/login');
     }); 

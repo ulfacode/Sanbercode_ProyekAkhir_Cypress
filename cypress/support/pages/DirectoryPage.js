@@ -74,16 +74,22 @@ class DirectoryPage {
         cy.get('.orangehrm-container').should('contain', name);
     }
 
-    verifySearchJobTitleOpsiSuccess(jobTitle){
+    verifySearchJobTitleSuccess(jobTitle){
         cy.get('.orangehrm-container').should('contain', jobTitle);
     }
 
-    verifySearchLocationOpsiSuccess(location){
+    verifySearchLocationSuccess(location){
         cy.get('.orangehrm-container').should('contain', location);
     }
 
     verifySearchNotFound(){
         cy.get('.orangehrm-horizontal-padding > .oxd-text').should('contain', 'No Records Found');
+    }
+
+    verifyResetSearchSuccess(){
+        this.getSearchEmployeeName().should('be.empty');
+        this.getJobTitleOpsi().should('contain', 'Select'); 
+        this.getLocationOpsi().should('contain', 'Select');
     }
 
 };
