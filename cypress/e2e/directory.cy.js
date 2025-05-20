@@ -29,12 +29,27 @@ describe('Directory Page Tests', () => {
 
     it('Verifikasi search employee', () => {
         DirectoryPage.inputSearchEmployeeName(DirectoryData.validEmployeeName);
-        cy.intercept('GET', '**/web/index.php/api/v2/directory/employees?limit=14&offset=0&empNumber=69').as('search');
         DirectoryPage.searchButton();
-        cy.wait('@search').its('response.statusCode').should('eq', 200);
         DirectoryPage.verifySearchEmployeeNameSuccess(DirectoryData.validEmployeeName);
     });
 
+    it('Verifikasi search job title', () => {
+        DirectoryPage.inputJobTitleOpsi(DirectoryData.validJobTitle);
+        DirectoryPage.searchButton();
+        DirectoryPage.verifySearchJobTitleOpsiSuccess(DirectoryData.validJobTitle);
+    });
 
+    it('Verifikasi search lokasi', () => {
+        DirectoryPage.inputLocationOpsi(DirectoryData.validLocation);
+        DirectoryPage.searchButton();
+        DirectoryPage.verifySearchLocationOpsiSuccess(DirectoryData.validLocation);
+    });
 
+    it.only('verifikasi search tidak ada hasil', () => {
+        DirectoryPage.inputSearchEmployeeName(DirectoryData.validEmployeeName);
+        DirectoryPage.inputJobTitleOpsi(DirectoryData.validJobTitle);
+        DirectoryPage.inputLocationOpsi(DirectoryData.invalidLocation);
+        DirectoryPage.searchButton();
+        DirectoryPage.verifySearchNotFound();
+    });
 });

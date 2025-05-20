@@ -54,12 +54,12 @@ class DirectoryPage {
 
     inputJobTitleOpsi(jobTitle){
         this.getJobTitleOpsi().click();
-        cy.get('.oxd-select-dropdown--position-bottom > :nth-child(1)').contains(jobTitle).click();
+        cy.get('.oxd-select-dropdown').contains(jobTitle).click();
     }
 
     inputLocationOpsi(location){
         this.getLocationOpsi().click();
-        cy.get('.oxd-select-dropdown--position-bottom > :nth-child(1)').contains(location).click();
+        cy.get('.oxd-select-dropdown').contains(location).click();
     }
 
     resetButton(){
@@ -71,7 +71,19 @@ class DirectoryPage {
     }
 
     verifySearchEmployeeNameSuccess(name){
-        cy.get('.oxd-sheet').should('contain', name);
+        cy.get('.orangehrm-container').should('contain', name);
+    }
+
+    verifySearchJobTitleOpsiSuccess(jobTitle){
+        cy.get('.orangehrm-container').should('contain', jobTitle);
+    }
+
+    verifySearchLocationOpsiSuccess(location){
+        cy.get('.orangehrm-container').should('contain', location);
+    }
+
+    verifySearchNotFound(){
+        cy.get('.orangehrm-horizontal-padding > .oxd-text').should('contain', 'No Records Found');
     }
 
 };
